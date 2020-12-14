@@ -8,10 +8,7 @@
             <br>
             <label for="car">Category : </label>
 
-            <select name="cat" id="cat">
-                <option value="html">html</option>
-                <option value="css">css</option>
-                <option value="php">php</option>
+            <select name="cat_id" id="cat_id">
             </select>
             <br>
             <button type="submit">submit</button>

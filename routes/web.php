@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\post;
+use App\Http\Controllers\blog;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,18 +19,9 @@ Route::get('/', function () {
     dd($postha);
     return view("welcome");
 });
-Route::post('index/', function () {
-    post::create([
-        'text' => request('text'),
-        'cat' => request('cat')
+Route::post('index/',  [blog::class , 'index']);
 
-    ]);
-    return view("index");
-});
-
-Route::get('create/', function () {
-    return view("create");
-});
+Route::get('create/',  [blog::class , 'create']);
 Route::get('index/', function () {
     return view("index");
 });
