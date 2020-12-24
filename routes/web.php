@@ -14,15 +14,9 @@ use App\Http\Controllers\blog;
 |
 */
 
-Route::get('/', function () {
-    $postha = post::All();
-    dd($postha);
-    return view("welcome");
-});
-Route::post('index/',  [blog::class , 'index']);
-
+Route::post('/',  [blog::class , 'index']);
+Route::get('/',  [blog::class , 'getindex']);
 Route::get('create/',  [blog::class , 'create']);
-Route::get('index/', function () {
-    return view("index");
-});
+Route::get('edit/{id}', [blog::class , 'edit']);
+Route::put('edit/{id}', [blog::class , 'postedit']);
 

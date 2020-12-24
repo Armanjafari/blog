@@ -2,8 +2,8 @@
 @section('content')
     <br>
     <div id="divvv">
-        <h1>Create Article</h1>
-    @if($errors->any())
+        <h1>Edit Article</h1>
+        @if($errors->any())
 
             <div class="alert alert-danger">
                 @foreach($errors->all() as $error)
@@ -11,9 +11,10 @@
                 @endforeach
             </div>
         @endif
-        <form class="form-group" action="/" method="post">
+        <form class="form-group" action="/edit/{{$article->id}}" method="post">
             @csrf
-            <textarea id="text" name="text"></textarea>
+            @method('put')
+            <textarea id="text" name="text">{{$article->text}}</textarea>
             <br>
             <label for="car">Category : </label>
 
@@ -23,7 +24,7 @@
                 @endforeach
             </select>
             <br>
-            <button class="btn btn-danger" type="submit">submit</button>
+            <button class="btn btn-light" type="submit">Update</button>
         </form>
     </div>
 

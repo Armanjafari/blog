@@ -2,26 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\Categories;
+use Illuminate\Support\Facades\App;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
-
 class blog extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
+
+        $validator = $request->validate([
+            'text' => 'required',
+            'cat_id' => 'required'
+        ]);
+
+
         post::create([
             'text' => request('text'),
-            'cat' => request('cat')
+            'cat_id' => request('cat_id')
 
         ]);
-        return view("index");
+        $cats = Categories::all();
+        return view("index", ['cats' => $cats]);
     }
-    public function create()
-    {
-        return view("create");
 
-    }}
+    public function create(Request $request)
+    {
+        $cats = Categories::all();
+        return view("create", ['cats' => $cats]);
+
+    }
+
+    public function getindex(Request $request)
+    {
+        $cats = Categories::all();
+        return view("index", ['cats' => $cats]);
+
+    }
+    public function edit(Request $request , $id)
+    {
+        $article = post::findOrFail($id);
+        $cats = Categories::all();
+        return view('edit',['article' =>$article,'cats' => $cats]);
+    }
+    public function postedit(Request $request , $id)
+    {
+        $validator = $request->validate([
+            'text' => 'required',
+            'cat_id' => 'required'
+        ]);
+        $cats = Categories::all();
+        $article = post::findOrFail($id);
+        post::where('id',$id)->update(
+            ['text' => request('text'),
+            'cat_id' => request('cat_id')]);
+        return view('edit',['article' =>$article,'cats' => $cats]);
+    }
+}
