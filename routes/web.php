@@ -19,4 +19,9 @@ Route::get('/',  [blog::class , 'getindex']);
 Route::get('create/',  [blog::class , 'create']);
 Route::get('edit/{id}', [blog::class , 'edit']);
 Route::put('edit/{id}', [blog::class , 'postedit']);
+Route::get('all/',  [blog::class , 'all']);
+Route::delete('all/delete/{id}',  [blog::class , 'delete']);
+
+
+
 
