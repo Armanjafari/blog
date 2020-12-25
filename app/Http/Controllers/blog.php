@@ -60,6 +60,23 @@ class blog extends Controller
         post::where('id',$id)->update(
             ['text' => request('text'),
             'cat_id' => request('cat_id')]);
-        return view('edit',['article' =>$article,'cats' => $cats]);
+        return redirect('/');
+    }
+    public function all(Request $request)
+    {
+        $articles =  post::all();
+        $cats =  Categories::all();
+
+        return view("all", ['cats' => $cats, 'articles' => $articles]);
+
+    }
+    public function delete(Request $request ,$id)
+    {
+
+        $articles =  post::findOrFail($id);
+        $cats =  Categories::all();
+        $articles->delete();
+        return back();
+
     }
 }

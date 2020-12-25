@@ -7,15 +7,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="/">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="create">Create</a>
+                    <a class="nav-link" href="http://127.0.0.1:8000/create">Create</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="http://127.0.0.1:8000/all">All Articles</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Contact</a>
