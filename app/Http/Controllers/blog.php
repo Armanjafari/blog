@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleValidator;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
+use PhpParser\Node\Expr\PostDec;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
 class blog extends Controller
 {
     //
-    public function index(Request $request)
+    public function index(ArticleValidator $request)
     {
-
-        $validator = $request->validate([
-            'text' => 'required',
-            'cat_id' => 'required'
-        ]);
-
 
         post::create([
             'text' => request('text'),
@@ -43,21 +39,17 @@ class blog extends Controller
         return view("index", ['cats' => $cats]);
 
     }
-    public function edit(Request $request , $id)
+    public function edit(Request $request , post $post)
     {
-        $article = post::findOrFail($id);
+        //Implicit Binding Used
         $cats = Categories::all();
-        return view('edit',['article' =>$article,'cats' => $cats]);
+        return view('edit',['article' =>$post,'cats' => $cats]);
     }
-    public function postedit(Request $request , $id)
+    public function postedit(ArticleValidator $request , post $post)
     {
-        $validator = $request->validate([
-            'text' => 'required',
-            'cat_id' => 'required'
-        ]);
+
         $cats = Categories::all();
-        $article = post::findOrFail($id);
-        post::where('id',$id)->update(
+        post::where('id',$post->id)->update(
             ['text' => request('text'),
             'cat_id' => request('cat_id')]);
         return redirect('/');
@@ -70,12 +62,12 @@ class blog extends Controller
         return view("all", ['cats' => $cats, 'articles' => $articles]);
 
     }
-    public function delete(Request $request ,$id)
+    public function delete(Request $request ,post $post)
     {
 
-        $articles =  post::findOrFail($id);
+
         $cats =  Categories::all();
-        $articles->delete();
+        $post->delete();
         return back();
 
     }

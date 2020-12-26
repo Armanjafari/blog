@@ -17,10 +17,10 @@ use App\Http\Controllers\blog;
 Route::post('/',  [blog::class , 'index']);
 Route::get('/',  [blog::class , 'getindex']);
 Route::get('create/',  [blog::class , 'create']);
-Route::get('edit/{id}', [blog::class , 'edit']);
-Route::put('edit/{id}', [blog::class , 'postedit']);
+Route::get('edit/{post}', [blog::class , 'edit']);
+Route::put('edit/{post}', [blog::class , 'postedit']);
 Route::get('all/',  [blog::class , 'all']);
-Route::delete('all/delete/{id}',  [blog::class , 'delete']);
+Route::delete('all/delete/{post}',  [blog::class , 'delete']);
 
 
 
