@@ -13,15 +13,19 @@ use App\Http\Controllers\blog;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix("")->middleware('auth')->group(function (){
+
+Route::get('create/', [blog::class, 'create']);
+Route::get('edit/{post}', [blog::class, 'edit']);
+Route::put('edit/{post}', [blog::class, 'postedit']);
+Route::get('all/', [blog::class, 'all']);
+Route::delete('all/delete/{post}', [blog::class, 'delete']);
+});
 
 Route::post('/',  [blog::class , 'index']);
 Route::get('/',  [blog::class , 'getindex']);
-Route::get('create/',  [blog::class , 'create']);
-Route::get('edit/{post}', [blog::class , 'edit']);
-Route::put('edit/{post}', [blog::class , 'postedit']);
-Route::get('all/',  [blog::class , 'all']);
-Route::delete('all/delete/{post}',  [blog::class , 'delete']);
 
 
+Auth::routes();
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -14,9 +14,15 @@ use Illuminate\Support\Facades\DB;
 class blog extends Controller
 {
     //
+    private $cats;
+    public function __construct()
+    {
+        $this->cats = Categories::all();
+
+    }
+
     public function index(ArticleValidator $request)
     {
-
         post::create([
             'text' => request('text'),
             'cat_id' => request('cat_id')
@@ -35,6 +41,8 @@ class blog extends Controller
 
     public function getindex(Request $request)
     {
+        dd($this->cats);
+
         $cats = Categories::all();
         return view("index", ['cats' => $cats]);
 
