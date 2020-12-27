@@ -22,6 +22,7 @@ Route::get('all/', [blog::class, 'all'])->name("all");
 Route::delete('all/delete/{post}', [blog::class, 'delete'])->name("delete");
 
 });
+Route::get('searchbyuser/{email}', [blog::class, 'search'])->name("search");
 Route::get('home/',  [blog::class , 'Redirect']);
 Route::get('show/{id}', [blog::class, 'showarticle'])->name("showarticle");
 Route::post('/',  [blog::class , 'index']);

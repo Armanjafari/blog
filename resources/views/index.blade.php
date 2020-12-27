@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer text-muted">
             {{$article->created_at}} by
-            <a href="#">{{$article->email}}</a>
+            <a href="http://127.0.0.1:8000/searchbyuser/{{$article->email}}">{{$article->email}}</a>
         </div>
     </div>
 @endforeach

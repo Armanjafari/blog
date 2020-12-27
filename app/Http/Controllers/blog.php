@@ -99,4 +99,9 @@ class blog extends Controller
     {
         return redirect('/');
     }
+    public function search(Request $request,$email)
+    {
+        $data = post::where('email',$email)->get();
+        return view('search',['data'=>$data]);
+    }
 }
