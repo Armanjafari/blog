@@ -28,35 +28,29 @@ class blog extends Controller
             'cat_id' => request('cat_id')
 
         ]);
-        $cats = Categories::all();
-        return view("index", ['cats' => $cats]);
+        return view("index", ['cats' => $this->cats]);
     }
 
     public function create(Request $request)
     {
-        $cats = Categories::all();
-        return view("create", ['cats' => $cats]);
+        return view("create", ['cats' => $this->cats]);
 
     }
 
     public function getindex(Request $request)
     {
-        dd($this->cats);
 
-        $cats = Categories::all();
-        return view("index", ['cats' => $cats]);
+        return view("index", ['cats' => $this->cats]);
 
     }
     public function edit(Request $request , post $post)
     {
         //Implicit Binding Used
-        $cats = Categories::all();
-        return view('edit',['article' =>$post,'cats' => $cats]);
+        return view('edit',['article' =>$post,'cats' => $this->cats]);
     }
     public function postedit(ArticleValidator $request , post $post)
     {
 
-        $cats = Categories::all();
         post::where('id',$post->id)->update(
             ['text' => request('text'),
             'cat_id' => request('cat_id')]);
@@ -65,16 +59,14 @@ class blog extends Controller
     public function all(Request $request)
     {
         $articles =  post::all();
-        $cats =  Categories::all();
 
-        return view("all", ['cats' => $cats, 'articles' => $articles]);
+        return view("all", ['cats' => $this->cats, 'articles' => $articles]);
 
     }
     public function delete(Request $request ,post $post)
     {
 
 
-        $cats =  Categories::all();
         $post->delete();
         return back();
 
