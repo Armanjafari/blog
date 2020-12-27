@@ -19,9 +19,10 @@ class ArticleSeeder extends Seeder
         foreach (range(1,10) as $item)
         {
             post::create([
-                'title' => "this a title number $item ",
+                'title' => "title number $item ",
                 'text' => "this a test number $item ",
-                'cat_id' => 1
+                'cat_id' => 1,
+                'user_id' => 1
 
             ]);
         }

@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer text-muted">
             {{$article->created_at}} by
-            <a href="#">Start Bootstrap</a>
+            <a href="#">user_id : {{$article->user_id}}</a>
         </div>
     </div>
 @endforeach

@@ -18,8 +18,11 @@ class CreatePosts extends Migration
             $table->text('text');
             $table->string('title',255);
             $table->unsignedBigInteger('cat_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->foreign('cat_id')->references('id')->on('categories');
+            $table->foreign('user_id')->references('id')->on('users');
+
 
         });
     }
