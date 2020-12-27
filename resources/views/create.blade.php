@@ -13,6 +13,8 @@
         @endif
         <form class="form-group" action="/" method="post">
             @csrf
+            <label for="car">Title : </label>
+            <input type="text"  name="title">
             <textarea id="text" name="text"></textarea>
             <br>
             <label for="car">Category : </label>

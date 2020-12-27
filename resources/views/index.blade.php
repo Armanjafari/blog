@@ -4,48 +4,22 @@
         <small>Secondary Text</small>
     </h1>
 
-    <!-- Blog Post -->
+
+
+@foreach($articles as $article)
     <div class="card mb-4">
-        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
         <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <h2 class="card-title">{{$article->text}}</h2>
+            <p class="card-text">{{$article->text}}</p>
+            <a href="http://127.0.0.1:8000/show/{{$article->id}}" class="btn btn-primary">Read More &</a>
         </div>
         <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
+            {{$article->created_at}} by
             <a href="#">Start Bootstrap</a>
         </div>
     </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-        <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
-            <a href="#">Start Bootstrap</a>
-        </div>
-    </div>
-
-    <!-- Blog Post -->
-    <div class="card mb-4">
-        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-        <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-            Posted on January 1, 2020 by
-            <a href="#">Start Bootstrap</a>
-        </div>
-    </div>
-
+@endforeach
+{{$userdata}}
     <!-- Pagination -->
     <ul class="pagination justify-content-center mb-4">
         <li class="page-item">

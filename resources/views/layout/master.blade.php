@@ -56,12 +56,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
-                                @foreach ($cats as $cat)
-                                    <li>
-                                        <a href="#">{{$cat->name}}</a>
-                                    </li>
-                                @endforeach
-
+            
                             </ul>
                         </div>
                     </div>

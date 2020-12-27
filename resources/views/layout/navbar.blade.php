@@ -17,9 +17,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="http://127.0.0.1:8000/all">All Articles</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+
+                @if(auth()->check())
+
+                    <li class="nav-item">
+                    <form action="http://127.0.0.1:8000/logout/" method="post">
+                        @csrf
+                    <button class="nav-link btn badge-danger">Logout !</button>
+                    </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:8000/login"> Login !</a>
+                    </li>
+                @endif
+
             </ul>
         </div>
     </div>

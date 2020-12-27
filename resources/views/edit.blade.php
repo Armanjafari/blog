@@ -14,6 +14,8 @@
         <form class="form-group" action="/edit/{{$article->id}}" method="post">
             @csrf
             @method('put')
+            <label for="car">Title : </label>
+            <input type="text"  name="title" value="{{$article->title}}">
             <textarea id="text" name="text">{{$article->text}}</textarea>
             <br>
             <label for="car">Category : </label>
