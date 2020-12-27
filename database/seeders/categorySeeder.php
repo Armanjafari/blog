@@ -18,7 +18,7 @@ class categorySeeder extends Seeder
         foreach (range(1,10) as $item)
         {
             Categories::create([
-                'name' => "this a test number $item "
+                'name' => "laravel $item "
             ]);
         }
     }

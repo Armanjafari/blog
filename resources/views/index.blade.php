@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer text-muted">
             {{$article->created_at}} by
-            <a href="#">user_id : {{$article->user_id}}</a>
+            <a href="#">{{$article->email}}</a>
         </div>
     </div>
 @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleValidator;
+use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
@@ -33,7 +34,8 @@ class blog extends Controller
         post::create([
             'text' => request('text'),
             'title' => request('title'),
-            'cat_id' => request('cat_id')
+            'cat_id' => request('cat_id'),
+            'email' => $userdata->email
 
         ]);
         return view("index", ['cats' => $this->cats, 'articles' => $this->articles,'userdata' => $userdata]);
@@ -92,5 +94,9 @@ class blog extends Controller
         $article = post::findOrFail($id);
         return view("showarticle", ['cats' => $this->cats,'article'=> $article]);
 
+    }
+    public function Redirect(Request $request)
+    {
+        return redirect('/');
     }
 }

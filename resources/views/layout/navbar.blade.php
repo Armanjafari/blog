@@ -27,7 +27,10 @@
                     </form>
                     </li>
                 @else
-                    <li class="nav-item">
+                    <li class="nav-item btn btn-info">
+                        <a class="nav-link" href="http://127.0.0.1:8000/register"> Register</a>
+                    </li>
+                    <li class="nav-item btn">
                         <a class="nav-link" href="http://127.0.0.1:8000/login"> Login !</a>
                     </li>
                 @endif
