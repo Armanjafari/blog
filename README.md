@@ -1,5 +1,5 @@
 # Simple blog Engine with laravel #
 
 
-**requriments**
+**requriments** :  
 composer require laravel/ui
