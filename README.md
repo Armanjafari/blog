@@ -1,5 +1,6 @@
 # Simple blog Engine with laravel #
 
 
-**requriments** :  
-composer require laravel/ui
+at first go to the project directory and run this commands :  
+**composer install**  
+**composer require laravel/ui**
