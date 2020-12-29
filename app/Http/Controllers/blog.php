@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleValidator;
+use App\Mail\MailSender;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 use PhpParser\Node\Expr\PostDec;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +51,8 @@ class blog extends Controller
 
     public function getindex(Request $request)
     {
+        //mail sender
+        //$email =  Mail::to('armanjafary1@gmail.com')->send(new MailSender());
         $userdata = auth()->user();
 
         return view("index", ['cats' => $this->cats, 'articles' => $this->articles, 'userdata' => $userdata]);

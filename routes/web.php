@@ -17,7 +17,7 @@ Route::prefix("")->middleware('auth')->group(function (){
 
 Route::get('create/', [blog::class, 'create'])->name("create");
 Route::get('edit/{post}', [blog::class, 'edit'])->name("edit");
-Route::put('edit/{post}', [blog::class, 'postedit'])->name("edit");
+Route::put('edit/{post}', [blog::class, 'postedit'])->name("postedit");
 Route::get('all/', [blog::class, 'all'])->name("all");
 Route::delete('all/delete/{post}', [blog::class, 'delete'])->name("delete");
 
