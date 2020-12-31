@@ -35,12 +35,14 @@ class blog extends Controller
 
     public function index(ArticleValidator $request)
     {
+
         $userdata = auth()->user();
+        //dd($userdata);
         post::create([
             'text' => request('text'),
             'title' => request('title'),
             'cat_id' => request('cat_id'),
-            'email' => $userdata->email
+            'user_email' => $userdata->email
 
         ]);
         return view("index", ['cats' => $this->cats, 'articles' => $this->articles,'userdata' => $userdata]);
@@ -105,7 +107,7 @@ class blog extends Controller
     }
     public function search(Request $request,$email)
     {
-        $data = post::where('email',$email)->get();
-        return view('search',['data'=>$data]);
+        $data = post::where('user_email',$email)->get();
+        return view('search',['data'=>$data , 'cats' => $this->cats]);
     }
 }

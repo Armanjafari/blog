@@ -8,7 +8,7 @@
         <lable>Created Date :</lable>
         <p>{{$article->created_at}}</p>
         <lable>Creator :</lable>
-        <p>{{$article->email}}</p>
+        <p>{{$article->user_email}}</p>
     @endsection
 @else
 <h3>You Need to login first</h3>
