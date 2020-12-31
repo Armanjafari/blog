@@ -10,8 +10,8 @@ installation guide :
 **php artisan migrate**  
 **php artisan db:seed**    
 
-# Note  
-this project isnt work for you becuse Laravel authentication controller had changes and you should put this on **view** functions in the auth controllers :  
+# Note  #
+this project isnt work for you becuse Laravel authentication controller had changes and you should put this on **view** function in the auth controllers :  
   
 **cats = Categories::all();**  
 **view ('viewfile', ['cats' => $cats])**  
