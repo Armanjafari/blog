@@ -3,20 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleValidator;
-use App\Mail\MailSender;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Mail;
-use MongoDB\Driver\Session;
 use PhpParser\Node\Expr\PostDec;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
-use function GuzzleHttp\Promise\queue;
-
 class blog extends Controller
 {
     //
@@ -35,14 +30,12 @@ class blog extends Controller
 
     public function index(ArticleValidator $request)
     {
-
         $userdata = auth()->user();
-        //dd($userdata);
         post::create([
             'text' => request('text'),
             'title' => request('title'),
             'cat_id' => request('cat_id'),
-            'user_email' => $userdata->email
+            'email' => $userdata->email
 
         ]);
         return view("index", ['cats' => $this->cats, 'articles' => $this->articles,'userdata' => $userdata]);
@@ -52,13 +45,10 @@ class blog extends Controller
     {
         return view("create", ['cats' => $this->cats]);
 
-
     }
 
     public function getindex(Request $request)
     {
-        //mail sender
-        //$email =  Mail::to('armanjafary1@gmail.com')->send(new MailSender());
         $userdata = auth()->user();
 
         return view("index", ['cats' => $this->cats, 'articles' => $this->articles, 'userdata' => $userdata]);
@@ -105,9 +95,13 @@ class blog extends Controller
         return view("showarticle", ['cats' => $this->cats,'article'=> $article]);
 
     }
+    public function Redirect(Request $request)
+    {
+        return redirect('/');
+    }
     public function search(Request $request,$email)
     {
-        $data = post::where('user_email',$email)->get();
-        return view('search',['data'=>$data , 'cats' => $this->cats]);
+        $data = post::where('email',$email)->get();
+        return view('search',['data'=>$data]);
     }
 }
