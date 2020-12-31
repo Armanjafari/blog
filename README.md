@@ -6,7 +6,7 @@ installation guide :
 **cd blog**  
 **composer install**    
 **composer require laravel/ui**   
-**Setup env file and database then run :**  
+# **Setup env file and database then run :**  
 **php artisan migrate**  
 **php artisan db:seed**    
 
