@@ -22,7 +22,7 @@ class ArticleSeeder extends Seeder
                 'title' => "title number $item ",
                 'text' => "this a test number $item ",
                 'cat_id' => 1,
-                'user_email' => "test$item@test.com"
+                'email' => "test$item@test.com"
 
             ]);
         }

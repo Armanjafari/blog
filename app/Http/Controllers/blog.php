@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
+use MongoDB\Driver\Session;
 use PhpParser\Node\Expr\PostDec;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
+
 class blog extends Controller
 {
     //
@@ -30,7 +32,9 @@ class blog extends Controller
 
     public function index(ArticleValidator $request)
     {
+
         $userdata = auth()->user();
+        //dd($userdata);
         post::create([
             'text' => request('text'),
             'title' => request('title'),
@@ -44,6 +48,7 @@ class blog extends Controller
     public function create(Request $request)
     {
         return view("create", ['cats' => $this->cats]);
+
 
     }
 
@@ -95,13 +100,9 @@ class blog extends Controller
         return view("showarticle", ['cats' => $this->cats,'article'=> $article]);
 
     }
-    public function Redirect(Request $request)
-    {
-        return redirect('/');
-    }
     public function search(Request $request,$email)
     {
         $data = post::where('email',$email)->get();
-        return view('search',['data'=>$data]);
+        return view('search',['data'=>$data , 'cats' => $this->cats]);
     }
 }
