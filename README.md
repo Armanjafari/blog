@@ -1,9 +1,17 @@
 # Simple blog Engine with laravel #
 
 
-at first go to the project directory and run this commands :  
-**composer install**  
-**composer require laravel/ui**
-# next step #  
-you should run the seeders with :  
-**php artisan db:seed**  
+installation guide :  
+**git clone https://github.com/Armanjafari/blog**  
+**cd blog**  
+**composer install**    
+**composer require laravel/ui**   
+**Setup env file and database then run :**  
+**php artisan migrate**  
+**php artisan db:seed**    
+
+# Note  
+this project isnt work for you becuse Laravel authentication controller had changes and you should put this on **view** functions in the auth controllers :  
+  
+**cats = Categories::all();**  
+**view ('viewfile', ['cats' => $cats])**  
