@@ -11,9 +11,12 @@ use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use MongoDB\Driver\Session;
 use PhpParser\Node\Expr\PostDec;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\DB;
+use function GuzzleHttp\Promise\queue;
+
 class blog extends Controller
 {
     //
@@ -46,6 +49,7 @@ class blog extends Controller
     public function create(Request $request)
     {
         return view("create", ['cats' => $this->cats]);
+
 
     }
 
@@ -98,10 +102,6 @@ class blog extends Controller
         $article = post::findOrFail($id);
         return view("showarticle", ['cats' => $this->cats,'article'=> $article]);
 
-    }
-    public function Redirect(Request $request)
-    {
-        return redirect('/');
     }
     public function search(Request $request,$email)
     {
