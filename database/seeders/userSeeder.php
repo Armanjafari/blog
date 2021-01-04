@@ -21,6 +21,7 @@ class userSeeder extends Seeder
                 'name' => "username $item ",
                 'email' => "test$item@test.com  ",
                 'password' => "123456789",
+                'phone' => '09014627125'
 
             ]);
         }

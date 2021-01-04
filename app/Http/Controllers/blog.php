@@ -33,17 +33,14 @@ class blog extends Controller
 
     public function index(ArticleValidator $request)
     {
-
-        $userdata = auth()->user();
-        //dd($userdata);
-        post::create([
-            'text' => request('text'),
-            'title' => request('title'),
-            'cat_id' => request('cat_id'),
-            'email' => $userdata->email
+        $valid_data = $request->validated();
+        auth()->user()->articles()->create([
+            'text' => $request->input('text'),
+            'title' => $request->input('title'),
+            'cat_id' => $request->input('cat_id'),
 
         ]);
-        return view("index", ['cats' => $this->cats, 'articles' => $this->articles,'userdata' => $userdata]);
+        return view("index", ['cats' => $this->cats, 'articles' => $this->articles]);
     }
 
     public function create(Request $request)
@@ -108,7 +105,8 @@ class blog extends Controller
     }
     public function category(Request $request,$cat)
     {
-        $data = Categories::where('name',$cat)->get();
+        $data = Categories::where('name',$cat)->value('id');
+        $data = post::where('cat_id', $data)->get();
         return view('search',['data'=>$data , 'cats' => $this->cats]);
     }
 }

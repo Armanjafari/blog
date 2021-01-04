@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    @foreach($data as $item)
+    @foreach($data->articles()->all() as $item)
         <div class="card mb-4">
             <div class="card-body">
                 <h2 class="card-title">{{$item->text}}</h2>
