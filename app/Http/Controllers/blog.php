@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleValidator;
+use App\Models\tag;
 use App\Models\User;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -103,6 +104,11 @@ class blog extends Controller
     public function search(Request $request,$email)
     {
         $data = post::where('email',$email)->get();
+        return view('search',['data'=>$data , 'cats' => $this->cats]);
+    }
+    public function category(Request $request,$cat)
+    {
+        $data = Categories::where('name',$cat)->get();
         return view('search',['data'=>$data , 'cats' => $this->cats]);
     }
 }

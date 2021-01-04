@@ -19,7 +19,6 @@
         </div>
     </div>
 @endforeach
-{{$userdata}}
     <!-- Pagination -->
     <ul class="pagination justify-content-center mb-4">
         <li class="page-item">

@@ -20,7 +20,7 @@ class CreatePosts extends Migration
             $table->unsignedBigInteger('cat_id');
             $table->string('email');
             $table->timestamps();
-            $table->foreign('cat_id')->references('id')->on('categories');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('email')->references('email')->on('users');
 
 

@@ -9,4 +9,12 @@ class post extends Model
 {
     protected $fillable = ['id','title','text','cat_id','email'];
     use HasFactory;
+    public function user()
+    {
+        return $this->belongsTo(User::class,'email','email');
+    }
+    public function cat()
+    {
+        return $this->belongsTo(Categories::class,'cat_id','id');
+    }
 }
