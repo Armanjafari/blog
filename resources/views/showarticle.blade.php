@@ -4,7 +4,9 @@
        <lable>title :</lable>
         <h1>{{$article->title}}</h1>
         <lable>text :</lable>
-        <p>{{$article->text}}</p>
+       @php
+        echo $article->text;
+        @endphp
         <lable>Created Date :</lable>
         <p>{{$article->created_at}}</p>
         <lable>Creator :</lable>

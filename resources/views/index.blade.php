@@ -9,8 +9,10 @@
 @foreach($articles as $article)
     <div class="card mb-4">
         <div class="card-body">
-            <h2 class="card-title">{{$article->text}}</h2>
-            <p class="card-text">{{$article->text}}</p>
+            <h2 class="card-title">{{$article->title}}</h2>
+            <p class="card-text">
+                @php echo ($article->text);
+                @endphp</p>
             <a href="http://127.0.0.1:8000/show/{{$article->id}}" class="btn btn-primary">Read More &</a>
         </div>
         <div class="card-footer text-muted">
