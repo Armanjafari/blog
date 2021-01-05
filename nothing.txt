@@ -1,0 +1,23 @@
+(for myself)
+things that should learn to be better programmer in laravel
+1- event 
+2- tdd
+3-crud concept
+4- everything about "middlware" detaily
+5-elasticsearch
+6- livewire [optinal]
+7- queue
+8- packaging in laravel
+9-solid
+10- oop (not enough)
+11-design pattern
+12- authrization
+13- Task Scheduling
+14- CORS
+15-Accessors
+16-Touches
+17-Mutator
+18-ACL
+19 -collections (see laravel documentaion)
+20- at the end see MVC course in each website you want
+(read some design pattern book its better than video for learn) [when everything is done !]
