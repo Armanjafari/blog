@@ -19,7 +19,7 @@
             <br>
             <label for="car">Category : </label>
 
-            <select name="cat_id" id="cat_id">
+            <select name="cat_id" id="cat_id" class="form-control">
                 @foreach($cats as $object)
                     <option value="{{ $object->id}}"> {{$object->name}}</option>
                 @endforeach
