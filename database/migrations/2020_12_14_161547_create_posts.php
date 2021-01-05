@@ -17,7 +17,6 @@ class CreatePosts extends Migration
             $table->id();
             $table->text('text');
             $table->string('title',255);
-            $table->string('phone');
             $table->unsignedBigInteger('cat_id');
             $table->string('email');
             $table->timestamps();
