@@ -109,4 +109,5 @@ class blog extends Controller
         $data = post::where('cat_id', $data)->get();
         return view('search',['data'=>$data , 'cats' => $this->cats]);
     }
+
 }
