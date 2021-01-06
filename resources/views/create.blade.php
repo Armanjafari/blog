@@ -14,7 +14,7 @@
         <form class="form-group" action="/" method="post">
             @csrf
             <label for="car">Title : </label>
-            <input type="text"  name="title">
+            <input type="text" class="form-control"  name="title"> <br>
             <textarea id="text" name="text"></textarea>
             <br>
             <label for="car">Category : </label>
