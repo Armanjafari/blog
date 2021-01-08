@@ -45,8 +45,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(post::class,'email','email');
     }
-    public function activeCode()
-    {
-        return $this->hasMany(ActiveCode::class);
-    }
+
 }

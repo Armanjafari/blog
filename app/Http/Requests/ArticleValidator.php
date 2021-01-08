@@ -24,8 +24,10 @@ class ArticleValidator extends FormRequest
     public function rules()
     {
         return [
+            'title'=> 'required',
             'text' => 'required',
-            'cat_id' => 'required'
+            'cat_id' => 'required',
+            'tags' => 'required'
         ];
     }
 }

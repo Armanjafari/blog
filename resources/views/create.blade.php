@@ -25,7 +25,13 @@
                 @endforeach
             </select>
             <br>
-
+            <label for="car">Tag : </label>
+            <select name="tags[]" id="tags" class="form-control" multiple>
+                @foreach($alltags as $object)
+                    <option value="{{ $object->id}}"> {{$object->name}}</option>
+                @endforeach
+            </select>
+            <br>
             <button class="btn btn-danger" type="submit">submit</button>
         </form>
     </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([categorySeeder::class]);
         $this->call([userSeeder::class]);
         $this->call([ArticleSeeder::class]);
+        $this->call([tagSeeder::class]);
 
     }
 }

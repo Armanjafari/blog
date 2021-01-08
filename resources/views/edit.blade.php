@@ -26,6 +26,14 @@
                 @endforeach
             </select>
             <br>
+
+            <label for="car">Tag : </label>
+            <select name="tags[]" id="tags" class="form-control" multiple>
+                @foreach($tags as $object)
+                    <option value="{{ $object->id}}" {{ in_array($object->id , $article->tags()->pluck('id')->toArray()) ? 'selected' : ""}}> {{$object->name}}</option>
+                @endforeach
+            </select>
+            <br>
             <button class="btn btn-light" type="submit">Update</button>
         </form>
     </div>

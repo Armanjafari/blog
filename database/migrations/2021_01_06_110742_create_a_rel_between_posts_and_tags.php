@@ -18,6 +18,7 @@ class CreateARelBetweenPostsAndTags extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onUpdate('cascade');
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('cascade');
+            $table->unique(['post_id','tag_id']);
         });
     }
 
