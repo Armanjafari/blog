@@ -14,4 +14,6 @@ installation guide :
 this project isnt work for you becuse Laravel authentication controller had changes and you should put this on **view** function in the auth controllers :  
   
 **cats = Categories::all();**  
-**view ('viewfile', ['cats' => $cats])**  
+**alltags = tag::all();**  
+
+**view ('viewfile', ['cats' => $cats , 'alltags' => $alltags])**  
