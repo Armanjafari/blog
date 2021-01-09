@@ -22,6 +22,9 @@ Route::get('all/', [blog::class, 'all'])->name("all");
 Route::delete('all/delete/{post}', [blog::class, 'delete'])->name("delete");
 
 });
+Route::get('code/', [blog::class, 'code'])->name("code");
+Route::get('loginwithcode/', [blog::class, 'loginwithcode'])->name("loginwithcode");
+Route::post('loginwithcode/', [blog::class, 'verifycode'])->name("verifycode");
 //Route::get('loginemail/', [, 'loginemail'])->name("loginemail");
 Route::get('searchbyuser/{email}', [blog::class, 'search'])->name("search");
 Route::get('searchbytag/{tag}', [blog::class, 'searchtag'])->name("searchtag");

@@ -15,6 +15,7 @@ use Laravel\Socialite\Facades\Socialite;
 use MongoDB\Driver\Session;
 use PhpParser\Node\Expr\PostDec;
 use Illuminate\Support\Facades\DB;
+use function Symfony\Component\Translation\t;
 
 class blog extends Controller
 {
@@ -24,13 +25,14 @@ class blog extends Controller
     private $userdata;
     private $data;
     private $tags;
-
+    private $activecode;
     public function __construct()
     {
         $this->userdata = auth()->user();
         $this->cats = Categories::all();
         $this->articles = post::all();
         $this->tags = tag::all();
+        $this->activecode = 1111;
 
     }
 
@@ -44,7 +46,7 @@ class blog extends Controller
 
         ]);
         $article->tags()->attach($request->input('tags'));
-        return view("index", ['cats' => $this->cats, 'articles' => $this->articles, 'alltags' => $this->tags]);
+        return view("index", [ 'articles' => $this->articles]);
     }
 
     public function create(Request $request)
@@ -59,7 +61,7 @@ class blog extends Controller
 
         $userdata = auth()->user();
 
-        return view("index", ['cats' => $this->cats, 'articles' => $this->articles, 'userdata' => $userdata, 'alltags' => $this->tags]);
+        return view("index", [ 'articles' => $this->articles, 'userdata' => $userdata]);
 
     }
 
@@ -67,7 +69,7 @@ class blog extends Controller
     {
         //Implicit Binding Used
         $article = post::findOrFail($id);
-        return view('edit',['cats' => $this->cats,'tags' => $this->tags, 'article' => $article,'alltags' => $this->tags]);
+        return view('edit',['tags' => $this->tags, 'article' => $article]);
     }
 
     public function postedit(ArticleValidator $request, post $post)
@@ -82,7 +84,7 @@ class blog extends Controller
     {
         $articles = post::all();
 
-        return view("all", ['cats' => $this->cats, 'articles' => $articles, 'alltags' => $this->tags]);
+        return view("all", [ 'articles' => $articles]);
 
     }
 
@@ -99,25 +101,58 @@ class blog extends Controller
     public function showarticle(Request $request,$id)
     {
         $article = post::findOrFail($id);
-        return view("showarticle", ['cats' => $this->cats,'article'=> $article, 'alltags' => $this->tags]);
+        return view("showarticle", ['article'=> $article]);
 
     }
     public function search(Request $request,$email)
     {
 
         $data = post::where('email',$email)->get();
-        return view('search',['data'=>$data , 'cats' => $this->cats, 'alltags' => $this->tags]);
+        return view('search',['data'=>$data ]);
     }
     public function category(Request $request,$cat)
     {
         $data = Categories::where('name',$cat)->value('id');
         $data = post::where('cat_id', $data)->get();
-        return view('search',['data'=>$data , 'cats' => $this->cats, 'alltags' => $this->tags]);
+        return view('search',['data'=>$data ]);
     }
     public function searchtag(Request $request,tag $tag)
     {
 
-        return view('searchbytag',['data'=>$tag->articles()->get() , 'cats' => $this->cats, 'alltags' => $this->tags]);
+        return view('searchbytag',['data'=>$tag->articles()->get() ]);
+    }
+    public function code(Request $request)
+    {
+        $username = "";
+        $password = '';
+        $from = "+983000505";
+        $pattern_code = "avolm8i3rb";
+        $to = array("9369400004");
+        $input_data = array("OTP" => "$this->activecode");
+        $url = "https://ippanel.com/patterns/pattern?username=" . $username . "&password=" . urlencode($password) . "&from=$from&to=" . json_encode($to) . "&input_data=" . urlencode(json_encode($input_data)) . "&pattern_code=$pattern_code";
+        $handler = curl_init($url);
+        curl_setopt($handler, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($handler, CURLOPT_POSTFIELDS, $input_data);
+        curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($handler);
+
+        return view('code');
+    }
+    public function loginwithcode()
+    {
+        return view("loginwithcode");
+    }
+    public function verifycode(Request $request)
+    {
+        $code = $request->input('code');
+        $email = $request->input('email');
+        if ($code == $this->activecode)
+        {
+            $user = User::where('email',$email)->first();
+            auth()->loginUsingId($user->id);
+            return redirect("/");
+        }
+        return view("loginwithcode");
     }
 
 

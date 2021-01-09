@@ -56,7 +56,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-unstyled mb-0">
-                            @foreach($cats as $item)
+                            @foreach(\App\Models\Categories::all() as $item)
                                     <li><a href="http://127.0.0.1:8000/searchbycategory/{{$item->name}}">{{$item->name}}</a></li>
                                 @endforeach
 
@@ -71,7 +71,7 @@
                 <h5 class="card-header">Side Widget</h5>
                 <div class="card-body">
                     <ul class="list-unstyled mb-0">
-                        @foreach($alltags as $item)
+                        @foreach(\App\Models\tag::all() as $item)
                             <li><a href="http://127.0.0.1:8000/searchbytag/{{$item->id}}">{{$item->name}}</a></li>
                         @endforeach
 
