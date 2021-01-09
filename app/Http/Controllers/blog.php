@@ -11,6 +11,7 @@ use App\Models\post;
 use App\Models\Categories;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
 use MongoDB\Driver\Session;
 use PhpParser\Node\Expr\PostDec;
 use Illuminate\Support\Facades\DB;
@@ -118,5 +119,6 @@ class blog extends Controller
 
         return view('searchbytag',['data'=>$tag->articles()->get() , 'cats' => $this->cats, 'alltags' => $this->tags]);
     }
+
 
 }

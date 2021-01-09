@@ -30,3 +30,6 @@ Route::get('show/{id}', [blog::class, 'showarticle'])->name("showarticle");
 Route::post('/',  [blog::class , 'index']);
 Route::get('/',  [blog::class , 'getindex']);
 Auth::routes();
+Route::get('auth/google', [\App\Http\Controllers\Auth\LoginController::class, 'google'])->name("google");
+Route::get('/auth/google/callback', [\App\Http\Controllers\Auth\LoginController::class, 'googlecallback']);
+
