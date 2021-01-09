@@ -5,7 +5,6 @@ installation guide :
 **git clone https://github.com/Armanjafari/blog**  
 **cd blog**  
 **composer install**    
-**composer require laravel/ui**   
 # **Setup env file and database then run :**  
 **php artisan migrate**  
 **php artisan db:seed**    
