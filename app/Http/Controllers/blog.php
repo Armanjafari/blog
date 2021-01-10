@@ -32,7 +32,7 @@ class blog extends Controller
         $this->cats = Categories::all();
         $this->articles = post::all();
         $this->tags = tag::all();
-        $this->activecode = rand(1000,9999);
+
 
     }
 
@@ -123,8 +123,20 @@ class blog extends Controller
     }
     public function code(Request $request)
     {
-        $username = "09170883288";
-        $password = '2282065166';
+        return view('code');
+    }
+    public function loginwithcode(Request $request)
+    {
+
+        $this->activecode = rand(1000,9999);
+        //dd($request->input('email'));
+        $user = User::where('email', $request->input('email'))->first();
+        $user->logindcode->create([
+            "code" => $this->activecode,
+            "expired_at" => now()->minutes(5)
+        ]);
+        $username = "";
+        $password = '';
         $from = "+983000505";
         $pattern_code = "avolm8i3rb";
         $to = array("9014627125");
@@ -135,19 +147,14 @@ class blog extends Controller
         curl_setopt($handler, CURLOPT_POSTFIELDS, $input_data);
         curl_setopt($handler, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($handler);
-
-        return view('code');
-    }
-    public function loginwithcode()
-    {
         return view("loginwithcode");
     }
     public function verifycode(Request $request)
     {
         $code = $request->input('code');
         $email = $request->input('email');
-        dd($this->activecode);
-        if ($code == $this->activecode)
+        $user = User::where('email', $email)->first();
+        if ($code == $user)
         {
             $user = User::where('email',$email)->first();
             if ($user!= null){
