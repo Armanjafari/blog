@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleValidator;
+use App\Mail\RegisterMail;
 use App\Models\tag;
 use App\Models\User;
+use App\Notifications\MailSender;
+use App\Notifications\Notification;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use App\Models\post;
@@ -164,6 +167,12 @@ class blog extends Controller
             return redirect("/");
         }
         return view("loginwithcode");
+    }
+    public function emailsend(Request $request)
+    {
+        $notification = resolve(RegisterMail::class);
+        $notification->sendsms(User::find(1), rand(10000,99999));
+        return view('index',[ 'articles' => $this->articles]);
     }
 
 

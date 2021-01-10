@@ -2,12 +2,15 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Mail;
 
-class ActiveCodeNotification extends Notification
+class MailSender extends Notification
 {
     use Queueable;
 
@@ -29,7 +32,7 @@ class ActiveCodeNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['phone'];
+        return ['mail'];
     }
 
     /**
@@ -57,5 +60,9 @@ class ActiveCodeNotification extends Notification
         return [
             //
         ];
+    }
+    public function sendemail(User $user , Mailable $mailable)
+    {
+        return Mail::to("armanjafary1@gmail.com")->send($mailable);
     }
 }

@@ -34,4 +34,8 @@ return [
         'client_secret' => 'AP91vOGNSIaGH9T5kSQIuOZp',
         'redirect' => 'http://127.0.0.1:8000/auth/google/callback/'
     ],
+    'sms' => [
+        'apikey' => '1MBWwEqHPAHXbO_3P0AGfnhsWRLOuJslxiCq8K32lN0=',
+        'url' => 'http://ippanel.com:8080/'
+    ]
 ];
