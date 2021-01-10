@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class post extends Model
 {
-    protected $fillable = ['id','title','text','cat_id','email'];
+    protected $fillable = ['id','title','text','cat_id','email','phone','type'];
     use HasFactory;
     public function user()
     {

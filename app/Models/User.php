@@ -46,5 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(post::class,'email','email');
     }
+    public function logincode()
+    {
+        return $this->hasMany(LoginCode::class);
+    }
 
 }

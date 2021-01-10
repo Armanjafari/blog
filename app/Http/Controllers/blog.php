@@ -32,7 +32,7 @@ class blog extends Controller
         $this->cats = Categories::all();
         $this->articles = post::all();
         $this->tags = tag::all();
-        $this->activecode = 1111;
+        $this->activecode = rand(1000,9999);
 
     }
 
@@ -69,7 +69,7 @@ class blog extends Controller
     {
         //Implicit Binding Used
         $article = post::findOrFail($id);
-        return view('edit',['tags' => $this->tags, 'article' => $article]);
+        return view('edit',['tags' => $this->tags, 'article' => $article, 'cats' => $this->cats]);
     }
 
     public function postedit(ArticleValidator $request, post $post)
@@ -123,11 +123,11 @@ class blog extends Controller
     }
     public function code(Request $request)
     {
-        $username = "";
-        $password = '';
+        $username = "09170883288";
+        $password = '2282065166';
         $from = "+983000505";
         $pattern_code = "avolm8i3rb";
-        $to = array("9369400004");
+        $to = array("9014627125");
         $input_data = array("OTP" => "$this->activecode");
         $url = "https://ippanel.com/patterns/pattern?username=" . $username . "&password=" . urlencode($password) . "&from=$from&to=" . json_encode($to) . "&input_data=" . urlencode(json_encode($input_data)) . "&pattern_code=$pattern_code";
         $handler = curl_init($url);
@@ -146,10 +146,14 @@ class blog extends Controller
     {
         $code = $request->input('code');
         $email = $request->input('email');
+        dd($this->activecode);
         if ($code == $this->activecode)
         {
             $user = User::where('email',$email)->first();
-            auth()->loginUsingId($user->id);
+            if ($user!= null){
+                auth()->loginUsingId($user->id);
+            }
+
             return redirect("/");
         }
         return view("loginwithcode");
