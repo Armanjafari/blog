@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <form method="get" action="http://127.0.0.1:8000/loginwithcode/">
+    <form method="get" action="http://127.0.0.1:8000/email/">
 
 
         <div class="form-group">

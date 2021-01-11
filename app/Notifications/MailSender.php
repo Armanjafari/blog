@@ -3,13 +3,16 @@
 namespace App\Notifications;
 
 use App\Models\User;
+use App\Providers\EmailProvider;
+use App\Providers\SmsProvider;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-
+use \Illuminate\Contracts\Foundation\Application;
 class MailSender extends Notification
 {
     use Queueable;
@@ -61,8 +64,15 @@ class MailSender extends Notification
             //
         ];
     }
-    public function sendemail(User $user , Mailable $mailable)
+    public function sendsms(User $user, $code)
     {
-        return Mail::to("armanjafary1@gmail.com")->send($mailable);
+        //dd('asdsad');
+        $smsprovider = new SmsProvider();
+        return $smsprovider->send($user,$code);
+    }
+    public function mailsender(Mailable $mailable)
+    {
+        $emailprovider = new EmailProvider();
+        return $emailprovider->send($mailable);
     }
 }

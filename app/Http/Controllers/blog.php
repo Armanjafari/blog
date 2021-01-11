@@ -170,9 +170,13 @@ class blog extends Controller
     }
     public function emailsend(Request $request)
     {
-        $notification = resolve(RegisterMail::class);
-        $notification->sendsms(User::find(1), rand(10000,99999));
-        return view('index',[ 'articles' => $this->articles]);
+        $email = $request->input('email');
+        $notification = resolve(MailSender::class);
+//        $this->activecode = rand(10000,99999);
+//        $user = User::where('email',$email)->first();
+        $email = new RegisterMail();
+        $notification->mailsender($email);
+        return view("loginwithcode");
     }
 
 

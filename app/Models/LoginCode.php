@@ -9,9 +9,8 @@ class LoginCode extends Model
 {
     public $timestamps = false;
     protected $fillable = ['code','user_id','expired_at'];
-    protected $table = 'logincode';
+    protected $table = 'login_code';
     use HasFactory;
-
 
     public function user()
     {

@@ -1,7 +1,7 @@
 @extends('layout.master')
 
 @section('content')
-    <form method="POST" action="http://127.0.0.1:8000/loginwithcode/">
+    <form method="POST" action="http://127.0.0.1:8000/verifycode/">
         @csrf
         <label for="email" class="form-control">{{ __('email') }}</label>
         <input id="email" type="email" class="form-control" name="email">

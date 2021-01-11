@@ -20,7 +20,6 @@ class RegisterMail extends Mailable
      */
     public function __construct()
     {
-        //
     }
 
     /**
@@ -32,17 +31,5 @@ class RegisterMail extends Mailable
     {
         return $this->view('emailtest');
     }
-    public function sendsms(User $user, $text)
-    {
-        $data = [
-            'p1' => 'OTP',
-            'tnum' => '+989014627125',
-            'v1' => $text,
-            'fnum' =>'+983000505',
-            'pid' => 'avolm8i3rb',
-            'apikey' => config('services.sms.apikey')
-        ];
-        //$client = new Client();
-        $response = Http::get(config('services.sms.url'),$data);
-    }
+
 }
