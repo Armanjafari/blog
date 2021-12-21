@@ -1,4 +1,6 @@
-# Simple blog Engine with laravel #
+# this is old don't use it please
+
+<!-- # Simple blog Engine with laravel #
 
 
 installation guide :  
@@ -16,3 +18,4 @@ this project isnt work for you becuse Laravel authentication controller had chan
 **alltags = tag::all();**  
 
 **view ('viewfile', ['cats' => $cats , 'alltags' => $alltags])**  
+ -->
